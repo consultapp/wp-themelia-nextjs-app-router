@@ -5,7 +5,6 @@ import { postSlice } from "./entities/post";
 import { logger } from "./middlewares/logger";
 import { pageSlice } from "./entities/page";
 import { postNavSlice } from "./entities/postNav";
-import { useMemo } from "react";
 
 const rootReducer = combineReducers({
   post: postSlice.reducer,
@@ -13,7 +12,14 @@ const rootReducer = combineReducers({
   postNav: postNavSlice.reducer,
 });
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([logger]),
-});
+export function configureAppStore(preloadedState) {
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
+  }); //logger
+
+  return store;
+}
+
+export const store = configureAppStore({});

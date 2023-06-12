@@ -23,12 +23,14 @@ export default function Post({ isLoading, post }) {
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            dangerouslySetInnerHTML={{ __html: title }}
-          ></Link>
+            // dangerouslySetInnerHTML={{ __html: title }}
+          >
+            LINK
+          </Link>
         </h1>
       </header>
       <div className="entry-summary" itemProp="description">
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        {/* <div dangerouslySetInnerHTML={{ __html: content }}></div> */}
       </div>
     </article>
   );

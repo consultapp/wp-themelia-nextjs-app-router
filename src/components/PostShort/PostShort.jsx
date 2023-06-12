@@ -17,19 +17,21 @@ export default function PostShort({ isLoading, post }) {
       itemType="http://schema.org/BlogPosting"
       itemProp="blogPost"
     >
-      <Author date={date} />
+      {/* <Author date={date} /> */}
       <header className="entry-header">
         <h2 className="entry-title font-headlines" itemProp="headline">
           <Link
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            dangerouslySetInnerHTML={{ __html: title }}
-          ></Link>
+            // dangerouslySetInnerHTML={{ __html: title }}
+          >
+            LINK
+          </Link>
         </h2>
       </header>
       <div className="entry-summary" itemProp="description">
-        <p dangerouslySetInnerHTML={{ __html: excerpt }}></p>
+        {/* <p dangerouslySetInnerHTML={{ __html: excerpt }}></p> */}
         <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
           <span className="screen-reader-text">{title}</span>

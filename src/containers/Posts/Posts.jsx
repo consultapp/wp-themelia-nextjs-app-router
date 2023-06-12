@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Posts from "../../components/Posts/Posts";
@@ -9,13 +11,13 @@ import {
 } from "../../store/entities/post/selectors";
 import { fetchPost } from "../../store/entities/post/thunk/fetchPost";
 import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function PostsContainer() {
-  const router = useRouter();
-  const { pageIndex = 1 } = router?.query;
+  // const router = useRouter();
+  // const { pageIndex = 1 } = router?.query;
   // const { pageIndex = 1 } = useParams();
-  // const pageIndex = 1;
+  const pageIndex = 1;
 
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsPostLoading);

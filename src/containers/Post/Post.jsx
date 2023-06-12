@@ -1,3 +1,5 @@
+"use client";
+
 import PostShort from "../../components/PostShort/PostShort";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,12 +13,14 @@ import { useEffect } from "react";
 import { fetchPost } from "../../store/entities/post/thunk/fetchPost";
 import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
 import { postSlice } from "../../store/entities/post";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function PostContainer({ postId, showShort = false }) {
   const dispatch = useDispatch();
-  const router = useRouter();
-  const { slug } = router.query;
+  const router = usePathname();
+  console.log("router", router);
+  // const { slug } = query || "";
+  const slug = "";
 
   const isLoading = useSelector(selectIsPostLoading);
   const isNotFound = useSelector(selectIsPostNotFound);

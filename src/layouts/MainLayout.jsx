@@ -1,3 +1,5 @@
+"use client";
+
 import FooterContainer from "../containers/Footer/Footer";
 import Workarea from "../components/Workarea/Workarea";
 import { usePathname } from "next/navigation";
@@ -7,11 +9,11 @@ import { store } from "../store";
 import { Provider } from "react-redux";
 
 function MainLayout({ children }) {
-  const { pathname } = usePathname();
+  // const { pathname } = usePathname();
 
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  // useLayoutEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   return (
     <Provider store={store}>
