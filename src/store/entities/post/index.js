@@ -5,14 +5,16 @@ import { trimLinkReadNext } from "../../../utils/functions";
 
 const postEntityAdapter = createEntityAdapter();
 
+const initialState = {
+  loadingStatus: LOADING_STATUS.idle,
+  status404: false,
+  loadedPages: [],
+  slugToId: {},
+};
+
 export const postSlice = createSlice({
   name: "post",
-  initialState: postEntityAdapter.getInitialState({
-    loadingStatus: LOADING_STATUS.idle,
-    status404: false,
-    loadedPages: [],
-    slugToId: {},
-  }),
+  initialState: postEntityAdapter.getInitialState(initialState),
   extraReducers: {
     [fetchPost.pending]: (state) => {
       state.loadingStatus = LOADING_STATUS.pending;
@@ -59,10 +61,36 @@ export const postSlice = createSlice({
   },
   reducers: {
     reset404: (state) => {
-      return { ...state, status404: false };
+      state.status404 = false;
     },
-    loadPreloadedState: (state, { payload }) => {
-      return { ...state, ...payload?.post };
+    setPreloadedPosts: (state, { payload }) => {
+      // console.log("payload", payload);
+      state.loadingStatus = LOADING_STATUS.fulfilled;
+      state.status404 = false;
+
+      if (
+        payload?.length &&
+        payload[0].pageIndex &&
+        !state.loadedPages.includes(Number(payload[0].pageIndex))
+      ) {
+        state.loadedPages.push(Number(payload[0].pageIndex));
+      }
+
+      const newPayload = payload.map((item) => {
+        if (item.slug) {
+          state.slugToId[item.slug] = item.id;
+        }
+        return {
+          ...item,
+          content: trimLinkReadNext(item?.content?.rendered || ""),
+          excerpt: trimLinkReadNext(item?.excerpt?.rendered || ""),
+          title: item?.title?.rendered,
+        };
+      });
+
+      postEntityAdapter.setMany(state, newPayload);
     },
   },
 });
+
+export const { setPreloadedPosts } = postSlice.actions;

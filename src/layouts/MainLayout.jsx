@@ -17,9 +17,9 @@ function MainLayout({ children }) {
 
   return (
     <Provider store={store}>
-      <HeaderContainer />
+      {/* <HeaderContainer /> */}
       <Workarea>{children}</Workarea>
-      <FooterContainer />
+      {/* <FooterContainer /> */}
     </Provider>
   );
 }

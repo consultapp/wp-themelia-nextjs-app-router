@@ -3,16 +3,16 @@ import Providers from "@/components/Provider/Provider";
 import PostsPreloader from "../components/Preloaders/PostsPreloader";
 import PostsContainer from "@/containers/Posts/Posts";
 import MainLayout from "@/layouts/MainLayout";
+import { setPreloadedPosts } from "@/store/entities/post";
+import { fetchPostsApi } from "@/utils/functions";
 
 export default async function Home() {
-  // const req = await fetch("http://localhost:3000/api/search");
-  // const data = await req.json();
-  // store.dispatch(setStartupPokemon(data));
-  const posts = {};
+  const posts = await fetchPostsApi({});
+  await store.dispatch(setPreloadedPosts(posts));
 
   return (
     <main>
-      <PostsPreloader posts={posts} />
+      {/* <PostsPreloader posts={posts} /> */}
       <Providers>
         <MainLayout>
           <PostsContainer />

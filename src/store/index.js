@@ -12,14 +12,17 @@ const rootReducer = combineReducers({
   postNav: postNavSlice.reducer,
 });
 
-export function configureAppStore(preloadedState) {
-  const store = configureStore({
-    reducer: rootReducer,
-    preloadedState,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
-  }); //logger
+// export function configureAppStore(preloadedState) {
+//   const store = configureStore({
+//     reducer: rootReducer,
+//     preloadedState,
+//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
+//   }); //logger
 
-  return store;
-}
+//   return store;
+// }
 
-export const store = configureAppStore({});
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
+});
