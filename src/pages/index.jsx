@@ -3,12 +3,14 @@ import PostsContainer from "../containers/Posts/Posts";
 import MainLayout from "../layouts/MainLayout";
 import { store } from "@/store";
 import { postSlice } from "@/store/entities/post";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 export default function Home({ preloadedState }) {
-  useLayoutEffect(() => {
+  const preloadRef = useRef(false);
+  if (!preloadRef.current) {
     store.dispatch(postSlice.actions.loadPreloadedState(preloadedState));
-  }, []);
+    preloadRef.current = true;
+  }
 
   return (
     <>
