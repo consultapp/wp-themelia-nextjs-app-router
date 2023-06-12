@@ -1,9 +1,7 @@
-"use client";
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import Search from "../../components/Plugins/Search";
 import { LOADING_STATUS } from "../../constants";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const initialState = { loadingStatus: LOADING_STATUS.idle, data: [] };
 

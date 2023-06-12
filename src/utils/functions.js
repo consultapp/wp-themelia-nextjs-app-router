@@ -7,10 +7,11 @@ export function trimLinkReadNext(str) {
 
 const words = ["mobile", "iphone", "android"];
 export function isMobile() {
-  const userAgent = window.navigator.userAgent.toLowerCase();
+  // const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
 
-  return words.reduce(
-    (acc, word) => (userAgent.includes(word) ? true : acc),
-    false
-  );
+  // return words.reduce(
+  //   (acc, word) => (userAgent.includes(word) ? true : acc),
+  //   false
+  // );
+  return false;
 }

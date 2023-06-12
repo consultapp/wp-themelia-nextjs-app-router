@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Loading from "../Loading/Loading";
 
 export default function Pagination({ postsCount, pageIndex }) {
   if (!postsCount) return <Loading />;
 
-  const pageCount = Math.ceil(postsCount / import.meta.env.VITE_POSTS_PER_PAGE);
+  const pageCount = Math.ceil(postsCount / process.env.POSTS_PER_PAGE);
 
   return (
     <nav className="navigation pagination" aria-label="Записи">
@@ -16,7 +16,7 @@ export default function Pagination({ postsCount, pageIndex }) {
           <Link
             className="prev page-numbers"
             key={`pageIndex-${pageIndex - 1}`}
-            to={`/posts/${pageIndex - 1}/`}
+            href={`/posts/${pageIndex - 1}/`}
           >
             ← Ранее
           </Link>
@@ -35,7 +35,7 @@ export default function Pagination({ postsCount, pageIndex }) {
             <Link
               className="page-numbers"
               key={`pageIndex-${page}`}
-              to={`/posts/${page}/`}
+              href={`/posts/${page}/`}
             >
               {page}
             </Link>
@@ -45,7 +45,7 @@ export default function Pagination({ postsCount, pageIndex }) {
           <Link
             className="next page-numbers"
             key={`pageIndex-${pageIndex + 1}`}
-            to={`/posts/${pageIndex + 1}/`}
+            href={`/posts/${pageIndex + 1}/`}
           >
             Далее →
           </Link>

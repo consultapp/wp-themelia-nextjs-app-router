@@ -7,12 +7,15 @@ import {
   selectIsPostRejected,
   selectPostsIdsByPageIndex,
 } from "../../store/entities/post/selectors";
-import { useParams } from "react-router-dom";
 import { fetchPost } from "../../store/entities/post/thunk/fetchPost";
 import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
+import { useRouter } from "next/router";
 
 export default function PostsContainer() {
-  const { pageIndex = 1 } = useParams();
+  const router = useRouter();
+  const { pageIndex = 1 } = router?.query;
+  // const { pageIndex = 1 } = useParams();
+  // const pageIndex = 1;
 
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsPostLoading);

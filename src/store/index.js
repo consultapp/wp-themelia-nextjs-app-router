@@ -5,6 +5,7 @@ import { postSlice } from "./entities/post";
 import { logger } from "./middlewares/logger";
 import { pageSlice } from "./entities/page";
 import { postNavSlice } from "./entities/postNav";
+import { useMemo } from "react";
 
 const rootReducer = combineReducers({
   post: postSlice.reducer,

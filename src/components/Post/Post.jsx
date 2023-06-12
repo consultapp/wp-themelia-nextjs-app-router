@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import Author from "../Author/Author";
+import Link from "next/link";
 
 export default function Post({ isLoading, post }) {
   if (isLoading) return <Loading />;
@@ -20,7 +20,7 @@ export default function Post({ isLoading, post }) {
         <Author date={date} />
         <h1 className="entry-title font-headlines" itemProp="headline">
           <Link
-            to={`/post/${slug}`}
+            href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
             dangerouslySetInnerHTML={{ __html: title }}

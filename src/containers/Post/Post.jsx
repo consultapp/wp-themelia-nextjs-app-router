@@ -9,14 +9,14 @@ import {
 import Post from "../../components/Post/Post";
 import { useEffect } from "react";
 import { fetchPost } from "../../store/entities/post/thunk/fetchPost";
-import { useParams } from "react-router-dom";
 import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
 import { postSlice } from "../../store/entities/post";
+import { useRouter } from "next/router";
 
 export default function PostContainer({ postId, showShort = false }) {
   const dispatch = useDispatch();
-  const params = useParams();
-  const { slug } = params;
+  const router = useRouter();
+  const { slug } = router.query;
 
   const isLoading = useSelector(selectIsPostLoading);
   const isNotFound = useSelector(selectIsPostNotFound);

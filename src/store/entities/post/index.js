@@ -45,13 +45,13 @@ export const postSlice = createSlice({
       postEntityAdapter.setMany(state, newPayload);
     },
     [fetchPost.rejected]: (state, { payload }) => {
-      if (payload === LOADING_STATUS.notfound) {
+      if (payload.status === LOADING_STATUS.notfound) {
         state.status404 = true;
         state.loadingStatus = LOADING_STATUS.rejected;
       } else {
         state.status404 = false;
         state.loadingStatus =
-          payload === LOADING_STATUS.earlyAdded
+          payload.status === LOADING_STATUS.earlyAdded
             ? LOADING_STATUS.fulfilled
             : LOADING_STATUS.rejected;
       }
@@ -60,6 +60,9 @@ export const postSlice = createSlice({
   reducers: {
     reset404: (state) => {
       return { ...state, status404: false };
+    },
+    loadPreloadedState: (state, { payload }) => {
+      return { ...state, ...payload?.post };
     },
   },
 });

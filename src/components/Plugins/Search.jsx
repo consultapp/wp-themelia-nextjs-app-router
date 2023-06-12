@@ -24,7 +24,7 @@ export default function Search({ result, search, handleSearchChange }) {
               return (
                 <li key={item.id} className={styles.searchLi}>
                   <Link
-                    to={
+                    href={
                       item.type +
                       item.url.replace(import.meta.env.VITE_SITE_BASE_URL, "")
                     }

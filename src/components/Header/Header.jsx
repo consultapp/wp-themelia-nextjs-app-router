@@ -13,7 +13,7 @@ export default function Header() {
       <div id="branding" className="site-branding grid-container">
         <div id="access" className="site-access grid-100">
           <div id="access-inner" className="access-inner relative">
-            <Link to="/" className="site-title-wrap clearfix">
+            <Link href="/" className="site-title-wrap clearfix">
               <div className="branding-item-wrap flex-center">
                 <div className="titles-wrap branding-item">
                   <h1

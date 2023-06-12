@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function NotFoundPage() {
   return (
     <div>
       <h1>404 | Page not found</h1>
-      <Link to="/">Got to main.</Link>
+      <Link href="/">Got to main.</Link>
     </div>
   );
 }

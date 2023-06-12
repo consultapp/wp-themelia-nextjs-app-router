@@ -7,6 +7,9 @@ const nextConfig = {
     POSTS_PER_PAGE: 10,
     SEARCH_PER_PAGE: 5,
   },
+  experimental: {
+    appDir: false,
+  },
 };
 
 module.exports = nextConfig;

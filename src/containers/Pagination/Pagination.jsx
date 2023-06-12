@@ -6,14 +6,14 @@ import {
   selectPostNavCount,
 } from "../../store/entities/postNav/selectors";
 import Pagination from "../../components/Pagination/Pagination";
-import { useParams } from "react-router-dom";
 
 export default function PaginationContainer() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsPostNavLoading);
   const postsCount = useSelector(selectPostNavCount);
 
-  const { pageIndex = 1 } = useParams();
+  // const { pageIndex = 1 } = useParams();
+  const pageIndex = 1;
 
   useEffect(() => {
     dispatch(fetchPostNav());

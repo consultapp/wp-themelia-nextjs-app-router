@@ -19,11 +19,11 @@ export const fetchPost = createAsyncThunk(
     const isPostAlreadyLoaded = selectIfPostAlreadyLoaded(state, { postId });
 
     if (isPostAlreadyLoaded) {
-      return rejectWithValue(LOADING_STATUS.earlyAdded);
+      return rejectWithValue({ status: LOADING_STATUS.earlyAdded });
     }
 
     if (!postId && isPostPageLoaded) {
-      return rejectWithValue(LOADING_STATUS.earlyAdded);
+      return rejectWithValue({ status: LOADING_STATUS.earlyAdded });
     }
 
     const url = new URL("posts", process.env.API_BASE_URL);
@@ -44,7 +44,7 @@ export const fetchPost = createAsyncThunk(
     const data = await response.json();
 
     if (!data || !data.length) {
-      return rejectWithValue(LOADING_STATUS.notfound);
+      return rejectWithValue({ status: LOADING_STATUS.notfound });
     }
 
     return pageIndex

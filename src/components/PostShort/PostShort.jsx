@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import Author from "../Author/Author";
 import styles from "./style.module.css";
+import Link from "next/link";
 
 export default function PostShort({ isLoading, post }) {
   if (isLoading) return <Loading />;
@@ -21,7 +21,7 @@ export default function PostShort({ isLoading, post }) {
       <header className="entry-header">
         <h2 className="entry-title font-headlines" itemProp="headline">
           <Link
-            to={`/post/${slug}`}
+            href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
             dangerouslySetInnerHTML={{ __html: title }}
@@ -30,7 +30,7 @@ export default function PostShort({ isLoading, post }) {
       </header>
       <div className="entry-summary" itemProp="description">
         <p dangerouslySetInnerHTML={{ __html: excerpt }}></p>
-        <Link to={`/post/${slug}`} className="entry-more-link">
+        <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
           <span className="screen-reader-text">{title}</span>
         </Link>
