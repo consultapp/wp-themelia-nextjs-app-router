@@ -17,7 +17,7 @@ export default function Post({ isLoading, post }) {
       itemProp="blogPost"
     >
       <header className="entry-header">
-        <Author date={date} />
+        {/* <Author date={date} /> */}
         <h1 className="entry-title font-headlines" itemProp="headline">
           <Link
             href={`/post/${slug}`}

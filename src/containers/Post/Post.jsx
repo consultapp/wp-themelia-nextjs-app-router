@@ -9,18 +9,24 @@ import {
   selectPostBySlug,
 } from "../../store/entities/post/selectors";
 import Post from "../../components/Post/Post";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { fetchPost } from "../../store/entities/post/thunk/fetchPost";
 import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
-import { postSlice } from "../../store/entities/post";
-import { usePathname, useRouter } from "next/navigation";
+import { setPreloadedPosts } from "@/store/entities/post";
 
-export default function PostContainer({ postId, showShort = false }) {
+export default function PostContainer({
+  postId,
+  preloadedPost,
+  slug,
+  showShort = false,
+}) {
   const dispatch = useDispatch();
-  const router = usePathname();
-  console.log("router", router);
-  // const { slug } = query || "";
-  const slug = "";
+
+  const loaded = useRef(false);
+  if (!loaded.current && preloadedPost) {
+    dispatch(setPreloadedPosts(preloadedPost));
+    loaded.current = true;
+  }
 
   const isLoading = useSelector(selectIsPostLoading);
   const isNotFound = useSelector(selectIsPostNotFound);
@@ -29,9 +35,9 @@ export default function PostContainer({ postId, showShort = false }) {
   const postBySlug = useSelector((state) => selectPostBySlug(state, { slug }));
   const post = postById ? postById : postBySlug;
 
-  useEffect(() => {
-    if (post && isNotFound) dispatch(postSlice.actions.reset404());
-  }, [dispatch, post, isNotFound]);
+  // useEffect(() => {
+  //   if (post && isNotFound) dispatch(postSlice.actions.reset404());
+  // }, [dispatch, post, isNotFound]);
 
   useEffect(() => {
     if (!post) dispatch(fetchPost({ postId, slug }));

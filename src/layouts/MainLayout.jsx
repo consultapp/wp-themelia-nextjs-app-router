@@ -1,32 +1,29 @@
 "use client";
-
-import FooterContainer from "../containers/Footer/Footer";
 import Workarea from "../components/Workarea/Workarea";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 import HeaderContainer from "../containers/Header/Header";
-import { store } from "../store";
-import { Provider } from "react-redux";
+import FooterContainer from "../containers/Footer/Footer";
 
-function MainLayout({ children }) {
+import Providers from "@/components/Provider/Provider";
+import Link from "next/link";
+
+export default function AppLayout({ children }) {
   // const { pathname } = usePathname();
 
   // useLayoutEffect(() => {
   //   window.scrollTo(0, 0);
   // }, [pathname]);
-  //<Provider store={store}>
-  //
 
   return (
-    <>
+    <Providers>
       {/* <HeaderContainer /> */}
+      <Link href="/">Home</Link>
       <Workarea>{children}</Workarea>
       {/* <FooterContainer /> */}
-    </>
+    </Providers>
   );
 }
-
-export default MainLayout;
 
 // <Route index element={<PostsContainer />} />
 // <Route path="/posts/:pageIndex" element={<PostsContainer />} />
