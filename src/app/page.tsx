@@ -4,16 +4,19 @@ import PostsPreloader from "../components/Preloaders/PostsPreloader";
 import PostsContainer from "@/containers/Posts/Posts";
 import MainLayout from "@/layouts/MainLayout";
 import { setPreloadedPosts } from "@/store/entities/post";
-import { fetchPostsApi } from "@/utils/functions";
+import { addPostsPageIndex, fetchPostsApi } from "@/utils/functions";
 
 export default async function Home() {
   const posts = await fetchPostsApi({});
-  await store.dispatch(setPreloadedPosts(posts));
+  if (posts) {
+    console.log("preloadedPosts", addPostsPageIndex(posts, 1));
+    store.dispatch(setPreloadedPosts(addPostsPageIndex(posts, 1)));
+  }
 
   return (
     <main>
-      {/* <PostsPreloader posts={posts} /> */}
       <Providers>
+        <PostsPreloader posts={posts} />
         <MainLayout>
           <PostsContainer />
         </MainLayout>

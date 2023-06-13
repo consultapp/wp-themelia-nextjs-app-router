@@ -17,12 +17,13 @@ const rootReducer = combineReducers({
 //     reducer: rootReducer,
 //     preloadedState,
 //     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
-//   }); //logger
+//   });
 
 //   return store;
 // }
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([]),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([logger]),
 });
+//

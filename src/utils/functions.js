@@ -7,13 +7,18 @@ export function trimLinkReadNext(str) {
 
 const words = ["mobile", "iphone", "android"];
 export function isMobile() {
-  // const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
+  const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
 
-  // return words.reduce(
-  //   (acc, word) => (userAgent.includes(word) ? true : acc),
-  //   false
-  // );
-  return false;
+  return words.reduce(
+    (acc, word) => (userAgent.includes(word) ? true : acc),
+    false
+  );
+}
+
+export function addPostsPageIndex(posts, pageIndex = 1) {
+  return posts.map((item) => {
+    return { ...item, pageIndex: 1 };
+  });
 }
 
 export async function fetchPostsApi({

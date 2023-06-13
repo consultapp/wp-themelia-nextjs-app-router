@@ -14,13 +14,15 @@ function MainLayout({ children }) {
   // useLayoutEffect(() => {
   //   window.scrollTo(0, 0);
   // }, [pathname]);
+  //<Provider store={store}>
+  //
 
   return (
-    <Provider store={store}>
+    <>
       {/* <HeaderContainer /> */}
       <Workarea>{children}</Workarea>
       {/* <FooterContainer /> */}
-    </Provider>
+    </>
   );
 }
 

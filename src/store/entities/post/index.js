@@ -64,7 +64,7 @@ export const postSlice = createSlice({
       state.status404 = false;
     },
     setPreloadedPosts: (state, { payload }) => {
-      // console.log("payload", payload);
+      console.log("payload", payload);
       state.loadingStatus = LOADING_STATUS.fulfilled;
       state.status404 = false;
 
