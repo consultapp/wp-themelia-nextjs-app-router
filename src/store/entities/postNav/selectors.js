@@ -1,13 +1,8 @@
-import { LOADING_STATUS } from "../../../constants";
-
 export const selectPostNavModule = (state) => state.postNav;
 
-// Status
-export const selectPostNavLoadingStatus = (state) =>
-  selectPostNavModule(state).loadingStatus;
-export const selectIsPostNavLoading = (state) =>
-  selectPostNavLoadingStatus(state) === LOADING_STATUS.pending;
+export const selectPostNavPagesCount = (state) =>
+  selectPostNavModule(state).pagesCount;
+export const selectPostNavPages = (state) => selectPostNavModule(state).pages;
 
-// Count
-export const selectPostNavCount = (state) =>
-  selectPostNavModule(state).postsCount;
+export const selectPostNavIdsByPage = (state, pageIndex) =>
+  selectPostNavPages(state)[pageIndex];

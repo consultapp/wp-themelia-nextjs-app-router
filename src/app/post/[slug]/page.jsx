@@ -3,7 +3,7 @@ import { fetchPostsApiBySlug } from "@/utils/functions";
 import { store } from "@/store";
 import { setPreloadedPosts } from "@/store/entities/post";
 import PostContainer from "@/containers/Post/Post";
-import PostPreloader from "../../../components/Preloaders/PostPreloader";
+import PostPreloader from "./preloder";
 
 export default async function PostPage({ params }) {
   const { slug } = params;
@@ -14,7 +14,9 @@ export default async function PostPage({ params }) {
 
   return (
     <AppLayout>
-      <PostContainer slug={slug} preloadedPost={post} />
+      <PostPreloader preloadedPost={post}>
+        <PostContainer slug={slug} preloadedPost={post} />
+      </PostPreloader>
     </AppLayout>
   );
 }

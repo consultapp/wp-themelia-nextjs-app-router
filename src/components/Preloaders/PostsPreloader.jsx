@@ -1,24 +1,24 @@
-"use client";
+// "use client";
 
-import { useRef } from "react";
-import { store } from "@/store";
-import { setPreloadedPosts } from "@/store/entities/post";
-import { useDispatch } from "react-redux";
-import { addPostsPageIndex } from "@/utils/functions";
+// import { useRef } from "react";
+// import { store } from "@/store";
+// import { setPreloadedPosts } from "@/store/entities/post";
+// import { useDispatch } from "react-redux";
+// import { addPostsPageIndex } from "@/utils/functions";
 
-function PostsPreloader({ posts, pageIndex = 1 }) {
-  console.log("PostsPreloader");
+// function PostsPreloader({ posts, pageIndex = 1 }) {
+//   console.log("PostsPreloader");
 
-  const loaded = useRef(false);
-  if (!loaded.current) {
-    store.dispatch(setPreloadedPosts(addPostsPageIndex(posts, pageIndex)));
+//   const loaded = useRef(false);
+//   if (!loaded.current) {
+//     store.dispatch(setPreloadedPosts(addPostsPageIndex(posts, pageIndex)));
 
-    console.log("dispatch setPreloadedPosts");
+//     console.log("dispatch setPreloadedPosts");
 
-    loaded.current = true;
-  }
+//     loaded.current = true;
+//   }
 
-  return null;
-}
+//   return null;
+// }
 
-export default PostsPreloader;
+// export default PostsPreloader;

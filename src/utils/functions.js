@@ -15,18 +15,7 @@ export function isMobile() {
   );
 }
 
-export function addPostsPageIndex(posts, pageIndex = 1) {
-  return posts.map((item) => {
-    return { ...item, pageIndex: 1 };
-  });
-}
-
-export async function fetchPostsApi({
-  postId = 0,
-  slug = "",
-  pageIndex = 1,
-  loadFull = true,
-}) {
+export async function getPostsByPageIndex(pageIndex = 1) {
   const url = new URL("posts", process.env.API_BASE_URL);
 
   const fields = `id,title,categories,excerpt,date,link,type,slug,modified${
@@ -45,7 +34,7 @@ export async function fetchPostsApi({
   return await response.json();
 }
 
-export async function fetchPostsApiBySlug(slug) {
+export async function getPostsBySlug(slug) {
   const url = new URL("posts", process.env.API_BASE_URL);
 
   const fields =
@@ -54,6 +43,15 @@ export async function fetchPostsApiBySlug(slug) {
 
   if (slug) url.searchParams.set("slug", slug);
   console.log("url", url);
+
+  const response = await fetch(url);
+  return await response.json();
+}
+
+export async function getPagesCount() {
+  const url = new URL("posts", process.env.API_BASE_URL);
+  url.searchParams.set("_fields", "id");
+  url.searchParams.set("per_page", "100");
 
   const response = await fetch(url);
   return await response.json();

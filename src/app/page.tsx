@@ -1,21 +1,32 @@
 import { store } from "@/store";
-import Providers from "@/components/Provider/Provider";
-import PostsPreloader from "../components/Preloaders/PostsPreloader";
 import PostsContainer from "@/containers/Posts/Posts";
+import AppLayout from "@/layouts/AppLayout";
+import HomePreloader from "./preloder";
+
 import { setPreloadedPosts } from "@/store/entities/post";
-import { addPostsPageIndex, fetchPostsApi } from "@/utils/functions";
-import AppLayout from "@/layouts/MainLayout";
+
+import { getPagesCount, getPostsByPageIndex } from "@/utils/functions";
+import { setPagesCount, setPreloadedPostNav } from "@/store/entities/postNav";
 
 export default async function Home() {
-  const posts = await fetchPostsApi({ pageIndex: 1 });
-  if (posts) {
-    console.log("preloadedPosts", addPostsPageIndex(posts, 1));
-    store.dispatch(setPreloadedPosts(addPostsPageIndex(posts, 1)));
-  }
+  const [posts, pageCount] = await Promise.all([
+    getPostsByPageIndex(1),
+    getPagesCount(),
+  ]);
+  store.dispatch(setPreloadedPosts(posts));
+  store.dispatch(
+    setPreloadedPostNav({
+      pageIndex: 1,
+      postIds: posts.map((item: any) => item.id),
+    })
+  );
+  store.dispatch(setPagesCount(pageCount));
 
   return (
     <AppLayout>
-      <PostsContainer preloadedPosts={posts} />
+      <HomePreloader preloadedPosts={posts}>
+        <PostsContainer />
+      </HomePreloader>
     </AppLayout>
   );
 }
