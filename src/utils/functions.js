@@ -18,17 +18,12 @@ export function isMobile() {
 export async function getPostsByPageIndex(pageIndex = 1) {
   const url = new URL("posts", process.env.API_BASE_URL);
 
-  const fields = `id,title,categories,excerpt,date,link,type,slug,modified${
-    loadFull ? ",content" : ""
-  }`;
+  const fields =
+    "id,title,categories,excerpt,date,link,type,slug,modified,content";
   url.searchParams.set("_fields", fields);
 
-  if (!postId && !slug && pageIndex) {
-    url.searchParams.set("page", pageIndex);
-    url.searchParams.set("per_page", process.env.POSTS_PER_PAGE);
-  }
-  if (postId) url.searchParams.set("include", postId);
-  if (slug) url.searchParams.set("slug", slug);
+  url.searchParams.set("page", pageIndex);
+  url.searchParams.set("per_page", process.env.POSTS_PER_PAGE);
 
   const response = await fetch(url);
   return await response.json();
@@ -40,9 +35,7 @@ export async function getPostsBySlug(slug) {
   const fields =
     "id,title,categories,excerpt,date,link,type,slug,modified,content";
   url.searchParams.set("_fields", fields);
-
-  if (slug) url.searchParams.set("slug", slug);
-  console.log("url", url);
+  url.searchParams.set("slug", slug);
 
   const response = await fetch(url);
   return await response.json();

@@ -1,13 +1,11 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-
-const postNavEntityAdapter = createEntityAdapter();
+import { createSlice } from "@reduxjs/toolkit";
 
 export const postNavSlice = createSlice({
   name: "postNav",
-  initialState: postNavEntityAdapter.getInitialState({
+  initialState: {
     pages: {},
     pagesCount: 0,
-  }),
+  },
   reducers: {
     setPreloadedPostNav: (state, { payload }) => {
       state.pages[payload.pageIndex] = payload.postIds;

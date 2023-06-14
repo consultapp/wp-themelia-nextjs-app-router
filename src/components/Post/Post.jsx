@@ -2,8 +2,7 @@ import Loading from "../Loading/Loading";
 import Author from "../Author/Author";
 import Link from "next/link";
 
-export default function Post({ isLoading, post }) {
-  if (isLoading) return <Loading />;
+export default function Post({ post }) {
   if (!post) return <div>Post Error???</div>;
 
   const { id, content, slug, title, date } = post;

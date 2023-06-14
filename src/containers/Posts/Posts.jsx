@@ -1,16 +1,16 @@
 "use client";
 
+import { selectPostNavIdsByPage } from "@/store/entities/postNav/selectors";
+
 import { useSelector } from "react-redux";
-import Posts from "../../components/Posts/Posts";
-import { selectPostsIdsByPageIndex } from "../../store/entities/post/selectors";
-import NotFoundPage from "../../components/NotFoundPage/NotFoundPage";
+import Posts from "@/components/Posts/Posts";
+import { selectPostsByIds } from "@/store/entities/post/selectors";
 
 export default function PostsContainer({ pageIndex = 1 }) {
-  const postIds = useSelector((state) => {
-    return selectPostsIdsByPageIndex(state, { pageIndex });
-  });
+  const postIds = useSelector((state) =>
+    selectPostNavIdsByPage(state, pageIndex)
+  );
+  console.log("postIds", postIds);
 
-  if (!postIds.length && isRejected) return <NotFoundPage />;
-
-  return <Posts isLoading={isLoading} postIds={postIds || []} />;
+  return <Posts postIds={postIds || []} />;
 }

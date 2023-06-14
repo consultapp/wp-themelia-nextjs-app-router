@@ -1,6 +1,4 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { LOADING_STATUS } from "../../../constants/index";
-import { fetchPost } from "./thunk/fetchPost";
 import { trimLinkReadNext } from "../../../utils/functions";
 
 const postEntityAdapter = createEntityAdapter();

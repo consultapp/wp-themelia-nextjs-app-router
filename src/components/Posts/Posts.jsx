@@ -1,9 +1,6 @@
-import Loading from "../Loading/Loading";
 import PostContainer from "../../containers/Post/Post";
-import PaginationContainer from "../../containers/Pagination/Pagination";
 
-export default function Posts({ isLoading, postIds }) {
-  if (isLoading) return <Loading />;
+export default function Posts({ postIds }) {
   if (!postIds.length) {
     <div>Posts not found</div>;
   }
@@ -15,7 +12,7 @@ export default function Posts({ isLoading, postIds }) {
           return <PostContainer postId={id} key={id} showShort={true} />;
         })
         .reverse()}
-      <PaginationContainer />
+      {/* <PaginationContainer /> */}
     </>
   );
 }

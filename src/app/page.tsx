@@ -8,11 +8,7 @@ import { setPreloadedPosts } from "@/store/entities/post";
 import { getPagesCount, getPostsByPageIndex } from "@/utils/functions";
 import { setPagesCount, setPreloadedPostNav } from "@/store/entities/postNav";
 
-export default async function Home() {
-  const [posts, pageCount] = await Promise.all([
-    getPostsByPageIndex(1),
-    getPagesCount(),
-  ]);
+export function setPreloadedHomePage(posts: any, pageCount: number) {
   store.dispatch(setPreloadedPosts(posts));
   store.dispatch(
     setPreloadedPostNav({
@@ -21,12 +17,21 @@ export default async function Home() {
     })
   );
   store.dispatch(setPagesCount(pageCount));
+}
+
+export default async function Home() {
+  const [posts, pageCount] = await Promise.all([
+    getPostsByPageIndex(1),
+    getPagesCount(),
+  ]);
+  setPreloadedHomePage(posts, pageCount);
 
   return (
-    <AppLayout>
-      <HomePreloader preloadedPosts={posts}>
+    <>
+      <HomePreloader posts={posts} pageCount={pageCount} />
+      <AppLayout>
         <PostsContainer />
-      </HomePreloader>
-    </AppLayout>
+      </AppLayout>
+    </>
   );
 }

@@ -1,9 +1,14 @@
 "use client";
-import { setPreloadedPosts } from "@/store/entities/post";
-import { store } from "@/store";
+import { useRef } from "react";
+import { setPreloadedHomePage } from "./page";
 
-export default function HomePreloader({ children, preloadedPosts }) {
-  store.dispatch(setPreloadedPosts(preloadedPosts));
+export default function HomePreloader({ posts, pageCount }) {
+  const loaded = useRef(false);
+  if (!loaded.current) {
+    setPreloadedHomePage(posts, pageCount);
 
-  return <>{children}</>;
+    loaded.current = true;
+  }
+  // return <>{children}</>;
+  return null;
 }
