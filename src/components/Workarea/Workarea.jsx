@@ -1,3 +1,4 @@
+"use client";
 import MainArea from "../MainArea/MainArea";
 import Sidebar from "../Sidebar/Sidebar";
 

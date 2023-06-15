@@ -8,7 +8,9 @@ export const selectPostById = (state, postId) =>
 // Slug
 export const selectPostSlugToId = (state) =>
   selectPostModule(state).slugToId || {};
+
 export const selectPostBySlug = (state, slug) =>
-  selectPostById(state, {
-    postId: selectPostSlugToId(state)[encodeURI(slug).toLowerCase()],
-  });
+  selectPostById(
+    state,
+    selectPostSlugToId(state)[encodeURI(slug).toLowerCase()]
+  );

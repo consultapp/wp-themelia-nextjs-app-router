@@ -5,7 +5,6 @@ import { useLayoutEffect } from "react";
 import HeaderContainer from "../containers/Header/Header";
 import FooterContainer from "../containers/Footer/Footer";
 
-import Providers from "@/components/Provider/Provider";
 import Link from "next/link";
 
 export default function AppLayout({ children }) {
@@ -16,12 +15,12 @@ export default function AppLayout({ children }) {
   // }, [pathname]);
 
   return (
-    <Providers>
+    <>
       {/* <HeaderContainer /> */}
       <Link href="/">Home</Link>
       <Workarea>{children}</Workarea>
       {/* <FooterContainer /> */}
-    </Providers>
+    </>
   );
 }
 

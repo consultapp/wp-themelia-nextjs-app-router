@@ -1,14 +1,19 @@
 import { store } from "@/store";
 import PostsContainer from "@/containers/Posts/Posts";
 import AppLayout from "@/layouts/AppLayout";
-import HomePreloader from "./preloder";
 
 import { setPreloadedPosts } from "@/store/entities/post";
 
 import { getPagesCount, getPostsByPageIndex } from "@/utils/functions";
 import { setPagesCount, setPreloadedPostNav } from "@/store/entities/postNav";
+import Preloader from "@/containers/Preloader/Preloder";
+import { Suspense } from "react";
 
-export function setPreloadedHomePage(posts: any, pageCount: number) {
+export default async function Home() {
+  const [posts, pageCount] = await Promise.all([
+    getPostsByPageIndex(1),
+    getPagesCount(),
+  ]);
   store.dispatch(setPreloadedPosts(posts));
   store.dispatch(
     setPreloadedPostNav({
@@ -17,21 +22,22 @@ export function setPreloadedHomePage(posts: any, pageCount: number) {
     })
   );
   store.dispatch(setPagesCount(pageCount));
-}
-
-export default async function Home() {
-  const [posts, pageCount] = await Promise.all([
-    getPostsByPageIndex(1),
-    getPagesCount(),
-  ]);
-  setPreloadedHomePage(posts, pageCount);
 
   return (
-    <>
-      <HomePreloader posts={posts} pageCount={pageCount} />
-      <AppLayout>
+    <AppLayout>
+      <Preloader
+        action={{
+          type: "home",
+          payload: {
+            posts,
+            pageCount,
+          },
+        }}
+        key="main_preloader"
+      />
+      <Suspense fallback={<p>Loading post...</p>}>
         <PostsContainer />
-      </AppLayout>
-    </>
+      </Suspense>
+    </AppLayout>
   );
 }

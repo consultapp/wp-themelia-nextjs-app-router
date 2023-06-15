@@ -13,7 +13,7 @@ export default function PostContainer({ postId, slug, showShort = false }) {
   const postBySlug = useSelector((state) => selectPostBySlug(state, slug));
   const post = postById ? postById : postBySlug;
 
-  console.log("PostContainer post", slug, post, postBySlug);
+  console.log("PostContainer post", post, postById, postBySlug, postId, slug);
 
   return showShort ? (
     <PostShort post={post} key={postId || slug} />
