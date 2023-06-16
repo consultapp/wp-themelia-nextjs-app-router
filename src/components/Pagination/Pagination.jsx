@@ -1,8 +1,9 @@
 import Link from "next/link";
-import Loading from "@/LoadingWheel/LoadingWheel";
+import LoadingWheel from "@/components/LoadingWheel/LoadingWheel";
 
 export default function Pagination({ postsCount, pageIndex }) {
-  if (!postsCount) return <Loading />;
+  console.log("postsCount", postsCount);
+  if (!postsCount) return <LoadingWheel />;
 
   const pageCount = Math.ceil(postsCount / process.env.POSTS_PER_PAGE);
 

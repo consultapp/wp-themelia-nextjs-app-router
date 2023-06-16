@@ -5,14 +5,9 @@ export default function Posts({ posts }) {
     <div>Posts not found</div>;
   }
 
-  return (
-    <>
-      {posts
-        .map((post) => {
-          return <PostShort post={post} key={post.id} />;
-        })
-        .reverse()}
-      {/* <PaginationContainer /> */}
-    </>
-  );
+  return posts
+    .map((post) => {
+      return <PostShort post={post} key={post.id} />;
+    })
+    .reverse();
 }
