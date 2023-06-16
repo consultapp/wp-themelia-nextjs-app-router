@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { LOADING_STATUS } from "../../constants";
-import Loading from "../LoadingWheel/LoadingWheel";
+import { LOADING_STATUS } from "@/constants";
+import Loading from "@/LoadingWheel/LoadingWheel";
 import styles from "./style.module.css";
 
 export default function Search({ result, search, handleSearchChange }) {

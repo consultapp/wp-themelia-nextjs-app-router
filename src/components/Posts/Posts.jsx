@@ -1,5 +1,4 @@
-import PaginationContainer from "../../containers/Pagination/Pagination";
-import PostShort from "../PostShort/PostShort";
+import PostShort from "@/PostShort/PostShort";
 
 export default function Posts({ posts }) {
   if (!posts && !posts.length) {

@@ -1,5 +1,4 @@
-import Loading from "../LoadingWheel/LoadingWheel";
-import Author from "../Author/Author";
+import Author from "@/Author/Author";
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
 

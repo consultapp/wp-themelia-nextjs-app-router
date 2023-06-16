@@ -1,4 +1,4 @@
-import Loading from "../Loading/Loading";
+import Loading from "@/Loading/Loading";
 
 export default function Page({ page, isLoading }) {
   if (isLoading) return <Loading />;

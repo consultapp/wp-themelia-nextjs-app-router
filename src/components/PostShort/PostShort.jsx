@@ -1,5 +1,5 @@
-import Author from "../Author/Author";
-import styles from "./style.module.css";
+import Author from "@/Author/Author";
+import styles from "@/style.module.css";
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
 
@@ -19,24 +19,22 @@ export default function PostShort({ post }) {
       itemProp="blogPost"
       key={id}
     >
-      {/* <Author date={date} /> */}
+      <Author date={date} />
       <header className="entry-header">
         <h2 className="entry-title font-headlines" itemProp="headline">
           <Link
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            // dangerouslySetInnerHTML={{ __html: titleRendered }}
-          >
-            LINK
-          </Link>
+            dangerouslySetInnerHTML={{ __html: titleRendered }}
+          />
         </h2>
       </header>
       <div className="entry-summary" itemProp="description">
-        {/* <p dangerouslySetInnerHTML={{ __html: excerptRendered }}></p> */}
+        <p dangerouslySetInnerHTML={{ __html: excerptRendered }} />
         <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
-          {/* <span className="screen-reader-text">{titleRendered}</span> */}
+          <span className="screen-reader-text">{titleRendered}</span>
         </Link>
       </div>
     </div>
