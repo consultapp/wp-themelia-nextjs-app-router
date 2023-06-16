@@ -1,5 +1,5 @@
-import MainArea from "@/MainArea/MainArea";
-import Sidebar from "@/Sidebar/Sidebar";
+import MainArea from "@/components/MainArea/MainArea";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export default function Workarea({ children }) {
   return (

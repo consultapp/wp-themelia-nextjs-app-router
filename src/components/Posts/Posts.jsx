@@ -1,4 +1,4 @@
-import PostShort from "@/PostShort/PostShort";
+import PostShort from "@/components/PostShort/PostShort";
 
 export default function Posts({ posts }) {
   if (!posts && !posts.length) {

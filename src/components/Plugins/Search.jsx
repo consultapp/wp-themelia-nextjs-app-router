@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LOADING_STATUS } from "@/constants";
-import Loading from "@/LoadingWheel/LoadingWheel";
+import LoadingWheel from "@/components/LoadingWheel/LoadingWheel";
 import styles from "./style.module.css";
 
 export default function Search({ result, search, handleSearchChange }) {
@@ -41,7 +41,7 @@ export default function Search({ result, search, handleSearchChange }) {
         )}
         {loadingStatus === LOADING_STATUS.pending && (
           <div className={styles.search}>
-            <Loading />
+            <LoadingWheel />
           </div>
         )}
         {loadingStatus === LOADING_STATUS.rejected && (

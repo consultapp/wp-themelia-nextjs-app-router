@@ -1,6 +1,6 @@
-import Author from "@/Author/Author";
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
+import Author from "@/components/Author/Author";
 
 export default function Post({ post }) {
   if (!post && !post.length) return <div>Post Error???</div>;

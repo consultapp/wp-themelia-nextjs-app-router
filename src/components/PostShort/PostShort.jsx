@@ -1,5 +1,5 @@
-import Author from "@/Author/Author";
-import styles from "@/style.module.css";
+import Author from "@/components/Author/Author";
+import styles from "./style.module.css";
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
 
