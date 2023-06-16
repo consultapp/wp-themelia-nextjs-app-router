@@ -3,7 +3,7 @@ import "../css/index.css";
 import "../css/unsemantic.css";
 import Workarea from "@/components/Workarea/Workarea";
 import Link from "next/link";
-import Loading from "./loading";
+import Loading from "./_ZZ_loading";
 
 export const metadata = {
   title: "Create Next App",
@@ -23,8 +23,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {header}
-        <Link href="/">Home</Link>
-        <Workarea>{children}</Workarea>
+        <Workarea>
+          <Link href="/">Home</Link>
+          {children}
+        </Workarea>
         {footer}
       </body>
     </html>

@@ -1,4 +1,4 @@
-export default function Footer() {
+export default async function FooterPart() {
   return (
     <footer
       id="footer"

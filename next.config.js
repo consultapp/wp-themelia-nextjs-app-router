@@ -2,6 +2,7 @@
 
 const nextConfig = {
   env: {
+    SITE_URL: "http://localhost:3000",
     SITE_BASE_URL: "https://consultapp.ru",
     API_BASE_URL: "https://consultapp.ru/wp-json/wp/v2/",
     POSTS_PER_PAGE: 10,

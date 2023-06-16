@@ -17,7 +17,7 @@ export default function Sidebar() {
       >
         Sidebar
       </h3>
-      <SearchContainer />
+      {/* <SearchContainer /> */}
       <About />
 
       <div className="sidebar-inner"></div>
