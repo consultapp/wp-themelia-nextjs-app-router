@@ -1,21 +1,18 @@
-import Loading from "../Loading/Loading";
-import PostContainer from "../../containers/Post/Post";
-import PaginationContainer from "../../containers/Pagination/Pagination";
+import PostShort from "@/components/PostShort/PostShort";
 
-export default function Posts({ isLoading, postIds }) {
-  if (isLoading) return <Loading />;
-  if (!postIds.length) {
+export default function Posts({ posts }) {
+  if (!posts && !posts.length) {
     <div>Posts not found</div>;
   }
 
   return (
     <>
-      {postIds
-        .map((id) => {
-          return <PostContainer postId={id} key={id} showShort={true} />;
+      {posts
+        .map((post) => {
+          return <PostShort post={post} key={post.id} />;
         })
         .reverse()}
-      <PaginationContainer />
+      {/* <PaginationContainer /> */}
     </>
   );
 }

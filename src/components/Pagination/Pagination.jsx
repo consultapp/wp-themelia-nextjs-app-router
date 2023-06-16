@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Loading from "../Loading/Loading";
+import Loading from "@/LoadingWheel/LoadingWheel";
 
 export default function Pagination({ postsCount, pageIndex }) {
   if (!postsCount) return <Loading />;

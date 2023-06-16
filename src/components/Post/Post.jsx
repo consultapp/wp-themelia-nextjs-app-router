@@ -1,12 +1,13 @@
-import Loading from "../Loading/Loading";
-import Author from "../Author/Author";
 import Link from "next/link";
+import { trimLinkReadNext } from "@/utils/functions";
+import Author from "@/components/Author/Author";
 
-export default function Post({ isLoading, post }) {
-  if (isLoading) return <Loading />;
-  if (!post) return <div>Post Error???</div>;
+export default function Post({ post }) {
+  if (!post && !post.length) return <div>Post Error???</div>;
 
-  const { id, content, slug, title, date } = post;
+  const { id, content, slug, title, date } = post[0];
+  const contentRendered = trimLinkReadNext(content?.rendered || "");
+  const titleRendered = title?.rendered || "";
 
   return (
     <article
@@ -23,12 +24,12 @@ export default function Post({ isLoading, post }) {
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            dangerouslySetInnerHTML={{ __html: title }}
-          ></Link>
+            dangerouslySetInnerHTML={{ __html: titleRendered }}
+          />
         </h1>
       </header>
       <div className="entry-summary" itemProp="description">
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div dangerouslySetInnerHTML={{ __html: contentRendered }} />
       </div>
     </article>
   );

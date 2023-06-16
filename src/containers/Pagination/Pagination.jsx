@@ -1,23 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPostNav } from "../../store/entities/postNav/thunk/fetchPostNav";
-import {
-  selectIsPostNavLoading,
-  selectPostNavCount,
-} from "../../store/entities/postNav/selectors";
+import { getPagesCount } from "@/utils/functions";
 import Pagination from "../../components/Pagination/Pagination";
 
 export default function PaginationContainer() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsPostNavLoading);
-  const postsCount = useSelector(selectPostNavCount);
-
   // const { pageIndex = 1 } = useParams();
-  const pageIndex = 1;
+  const pagesCount = getPagesCount();
 
-  useEffect(() => {
-    dispatch(fetchPostNav());
-  }, [dispatch]);
+  const pageIndex = 1;
 
   return <Pagination postsCount={postsCount} pageIndex={Number(pageIndex)} />;
 }

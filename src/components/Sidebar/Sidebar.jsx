@@ -1,5 +1,5 @@
-import SearchContainer from "../../containers/Search/Search";
-import About from "../Plugins/About";
+import SearchContainer from "@/containers/Search/Search";
+import About from "@/components/Plugins/About";
 
 export default function Sidebar() {
   return (
