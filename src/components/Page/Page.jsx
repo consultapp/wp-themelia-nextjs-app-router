@@ -1,9 +1,10 @@
 export default function Page({ page }) {
-  if (!page) return redirect("/404");
+  if (!page || !page.length) return redirect("/404");
 
-  const { id, title, content } = page;
+  const { id, title, content } = page[0];
   const renderTitle = title?.rendered || "";
   const renderContent = content?.rendered || "";
+  console.log("page", page);
 
   return (
     <article
