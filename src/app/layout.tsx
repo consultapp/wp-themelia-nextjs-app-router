@@ -1,6 +1,9 @@
-import Providers from "@/components/Provider/Provider";
+import { Suspense } from "react";
 import "../css/index.css";
 import "../css/unsemantic.css";
+import Workarea from "@/components/Workarea/Workarea";
+import Link from "next/link";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,14 +12,28 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  header,
+  footer,
 }: {
   children: React.ReactNode;
+  header: React.ReactNode;
+  footer: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        {header}
+        <Link href="/">Home</Link>
+        <Workarea>{children}</Workarea>
+        {footer}
       </body>
     </html>
   );
 }
+
+// <Route index element={<PostsContainer />} />
+// <Route path="/posts/:pageIndex" element={<PostsContainer />} />
+// <Route path="/page/:slug" element={<PageContainer />} />
+// <Route path="/post/:slug" element={<PostContainer />} />
+// <Route path="/404" element={<NotFoundPage />} />
+// <Route path="*" element={<NotFoundPage />} />

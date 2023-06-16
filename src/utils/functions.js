@@ -5,16 +5,6 @@ export function trimLinkReadNext(str) {
   return result;
 }
 
-const words = ["mobile", "iphone", "android"];
-export function isMobile() {
-  const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
-
-  return words.reduce(
-    (acc, word) => (userAgent.includes(word) ? true : acc),
-    false
-  );
-}
-
 export async function getPostsByPageIndex(pageIndex = 1) {
   const url = new URL("posts", process.env.API_BASE_URL);
 

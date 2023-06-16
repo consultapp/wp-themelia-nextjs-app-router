@@ -1,13 +1,14 @@
-import Loading from "../Loading/Loading";
 import Author from "../Author/Author";
 import styles from "./style.module.css";
 import Link from "next/link";
+import { trimLinkReadNext } from "@/utils/functions";
 
-export default function PostShort({ isLoading, post }) {
-  if (isLoading) return <Loading />;
+export default function PostShort({ post }) {
   if (!post) return <div>Error???</div>;
 
   const { id, excerpt, slug, title, date } = post;
+  const excerptRendered = trimLinkReadNext(excerpt?.rendered || "");
+  const titleRendered = title?.rendered;
 
   return (
     <div
@@ -16,6 +17,7 @@ export default function PostShort({ isLoading, post }) {
       itemScope="itemScope"
       itemType="http://schema.org/BlogPosting"
       itemProp="blogPost"
+      key={id}
     >
       {/* <Author date={date} /> */}
       <header className="entry-header">
@@ -24,17 +26,17 @@ export default function PostShort({ isLoading, post }) {
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            // dangerouslySetInnerHTML={{ __html: title }}
+            // dangerouslySetInnerHTML={{ __html: titleRendered }}
           >
             LINK
           </Link>
         </h2>
       </header>
       <div className="entry-summary" itemProp="description">
-        {/* <p dangerouslySetInnerHTML={{ __html: excerpt }}></p> */}
+        {/* <p dangerouslySetInnerHTML={{ __html: excerptRendered }}></p> */}
         <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
-          <span className="screen-reader-text">{title}</span>
+          {/* <span className="screen-reader-text">{titleRendered}</span> */}
         </Link>
       </div>
     </div>

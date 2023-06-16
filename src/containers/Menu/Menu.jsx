@@ -1,7 +1,21 @@
+"use client";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Menu from "../../components/Menu/Menu";
-import { isMobile } from "../../utils/functions";
+
+const words = ["mobile", "iphone", "android"];
+
+function isMobile() {
+  if (typeof window !== "undefined") {
+    const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
+
+    return words.reduce(
+      (acc, word) => (userAgent.includes(word) ? true : acc),
+      false
+    ); // Client-side-only code
+  }
+  return false;
+}
 
 export default function MenuContainer() {
   const pathname = usePathname();

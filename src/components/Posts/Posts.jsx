@@ -1,15 +1,16 @@
-import PostContainer from "../../containers/Post/Post";
+import PaginationContainer from "../../containers/Pagination/Pagination";
+import PostShort from "../PostShort/PostShort";
 
-export default function Posts({ postIds }) {
-  if (!postIds.length) {
+export default function Posts({ posts }) {
+  if (!posts && !posts.length) {
     <div>Posts not found</div>;
   }
 
   return (
     <>
-      {postIds
-        .map((id) => {
-          return <PostContainer postId={id} key={id} showShort={true} />;
+      {posts
+        .map((post) => {
+          return <PostShort post={post} key={post.id} />;
         })
         .reverse()}
       {/* <PaginationContainer /> */}

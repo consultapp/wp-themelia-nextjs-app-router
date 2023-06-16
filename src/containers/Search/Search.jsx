@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Search from "../../components/Plugins/Search";
 import { LOADING_STATUS } from "../../constants";
