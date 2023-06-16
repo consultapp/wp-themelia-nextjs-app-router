@@ -1,7 +1,7 @@
 import Link from "next/link";
 import MenuContainer from "@/containers/Menu/Menu";
 
-export default async function HeaderPart() {
+export default function Header() {
   return (
     <header
       id="header"

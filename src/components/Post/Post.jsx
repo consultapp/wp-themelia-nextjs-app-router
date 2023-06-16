@@ -19,20 +19,18 @@ export default function Post({ post }) {
       itemProp="blogPost"
     >
       <header className="entry-header">
-        {/* <Author date={date} /> */}
+        <Author date={date} />
         <h1 className="entry-title font-headlines" itemProp="headline">
           <Link
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            // dangerouslySetInnerHTML={{ __html: titleRendered }}
-          >
-            LINK
-          </Link>
+            dangerouslySetInnerHTML={{ __html: titleRendered }}
+          />
         </h1>
       </header>
       <div className="entry-summary" itemProp="description">
-        {/* <div dangerouslySetInnerHTML={{ __html: contentRendered }} /> */}
+        <div dangerouslySetInnerHTML={{ __html: contentRendered }} />
       </div>
     </article>
   );

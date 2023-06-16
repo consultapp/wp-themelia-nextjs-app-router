@@ -1,9 +1,10 @@
-import { Suspense } from "react";
-import "../css/index.css";
-import "../css/unsemantic.css";
+import "@/css/index.css";
+import "@/css/unsemantic.css";
 import Workarea from "@/components/Workarea/Workarea";
 import Link from "next/link";
 import Loading from "./_ZZ_loading";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -22,12 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {header}
+        <Header />
         <Workarea>
           <Link href="/">Home</Link>
           {children}
         </Workarea>
-        {footer}
+        <Footer />
       </body>
     </html>
   );
