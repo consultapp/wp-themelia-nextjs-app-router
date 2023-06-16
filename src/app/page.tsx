@@ -8,7 +8,7 @@ export default async function Home() {
     getPostsByPageIndex(1),
     getPagesCount(),
   ]);
-  console.log("postsPages", postsPages);
+
   return (
     <>
       <Posts posts={posts || []} />

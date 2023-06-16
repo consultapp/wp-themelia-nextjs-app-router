@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MenuContainer from "@/containers/Menu/Menu";
+import MenuContainer from "@/client/Menu/Menu";
 
 export default function Header() {
   return (

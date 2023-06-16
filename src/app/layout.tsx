@@ -2,7 +2,6 @@ import "@/css/index.css";
 import "@/css/unsemantic.css";
 import Workarea from "@/components/Workarea/Workarea";
 import Link from "next/link";
-import Loading from "./_ZZ_loading";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -13,30 +12,16 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  header,
-  footer,
 }: {
   children: React.ReactNode;
-  header: React.ReactNode;
-  footer: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body>
         <Header />
-        <Workarea>
-          <Link href="/">Home</Link>
-          {children}
-        </Workarea>
+        <Workarea>{children}</Workarea>
         <Footer />
       </body>
     </html>
   );
 }
-
-// <Route index element={<PostsContainer />} />
-// <Route path="/posts/:pageIndex" element={<PostsContainer />} />
-// <Route path="/page/:slug" element={<PageContainer />} />
-// <Route path="/post/:slug" element={<PostContainer />} />
-// <Route path="/404" element={<NotFoundPage />} />
-// <Route path="*" element={<NotFoundPage />} />

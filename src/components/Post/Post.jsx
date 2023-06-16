@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
 import Author from "@/components/Author/Author";
+import { redirect } from "next/navigation";
 
 export default function Post({ post }) {
-  if (!post && !post.length) return <div>Post Error???</div>;
+  if (!post || !post.length) return redirect("/404");
 
   const { id, content, slug, title, date } = post[0];
   const contentRendered = trimLinkReadNext(content?.rendered || "");

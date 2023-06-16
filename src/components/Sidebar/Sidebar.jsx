@@ -1,4 +1,4 @@
-import SearchContainer from "@/containers/Search/Search";
+import SearchContainer from "@/client/Search/Search";
 import About from "@/components/Plugins/About";
 
 export default function Sidebar() {
@@ -17,9 +17,8 @@ export default function Sidebar() {
       >
         Sidebar
       </h3>
-      {/* <SearchContainer /> */}
+      <SearchContainer />
       <About />
-
       <div className="sidebar-inner"></div>
     </aside>
   );

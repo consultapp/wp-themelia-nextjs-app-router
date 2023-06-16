@@ -1,12 +1,9 @@
-import Loading from "@/Loading/Loading";
-
-export default function Page({ page, isLoading }) {
-  if (isLoading) return <Loading />;
-  if (!page) return <div>Error of loading</div>;
+export default function Page({ page }) {
+  if (!page) return redirect("/404");
 
   const { id, title, content } = page;
-  const renderTitle = title?.rendered;
-  const renderContent = content?.rendered;
+  const renderTitle = title?.rendered || "";
+  const renderContent = content?.rendered || "";
 
   return (
     <article

@@ -2,9 +2,10 @@ import Author from "@/components/Author/Author";
 import styles from "./style.module.css";
 import Link from "next/link";
 import { trimLinkReadNext } from "@/utils/functions";
+import { redirect } from "next/navigation";
 
 export default function PostShort({ post }) {
-  if (!post) return <div>Error???</div>;
+  if (!post) return redirect("/404");
 
   const { id, excerpt, slug, title, date } = post;
   const excerptRendered = trimLinkReadNext(excerpt?.rendered || "");
@@ -26,17 +27,15 @@ export default function PostShort({ post }) {
             href={`/post/${slug}`}
             rel="bookmark"
             itemProp="url"
-            // dangerouslySetInnerHTML={{ __html: titleRendered }}
-          >
-            LINK
-          </Link>
+            dangerouslySetInnerHTML={{ __html: titleRendered }}
+          />
         </h2>
       </header>
       <div className="entry-summary" itemProp="description">
-        {/* <p dangerouslySetInnerHTML={{ __html: excerptRendered }} /> */}
+        <p dangerouslySetInnerHTML={{ __html: excerptRendered }} />
         <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
-          {/* <span className="screen-reader-text">{titleRendered}</span> */}
+          <span className="screen-reader-text">{titleRendered}</span>
         </Link>
       </div>
     </div>

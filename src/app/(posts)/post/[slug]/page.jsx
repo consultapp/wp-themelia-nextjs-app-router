@@ -5,9 +5,5 @@ export default async function PostPage({ params }) {
   const { slug } = params;
   const post = await getPostsBySlug(slug);
 
-  return (
-    <>
-      <Post post={post || []} />
-    </>
-  );
+  return <Post post={post || []} />;
 }
