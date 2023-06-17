@@ -32,7 +32,7 @@ export default function PostShort({ post }) {
         </h2>
       </header>
       <div className="entry-summary" itemProp="description">
-        <p dangerouslySetInnerHTML={{ __html: excerptRendered }} />
+        <div dangerouslySetInnerHTML={{ __html: excerptRendered }} />
         <Link href={`/post/${slug}`} className="entry-more-link">
           <span>Читать далее</span>
           <span className="screen-reader-text">{titleRendered}</span>
