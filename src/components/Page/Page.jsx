@@ -4,7 +4,6 @@ export default function Page({ page }) {
   const { id, title, content } = page[0];
   const renderTitle = title?.rendered || "";
   const renderContent = content?.rendered || "";
-  console.log("page", page);
 
   return (
     <article
