@@ -1,3 +1,8 @@
+import { getPageBySlugApi } from "@/app/api/pageBySlug/route";
+import { getPostBySlugApi } from "@/app/api/postBySlug/route";
+import { getPostByPostIndexApi } from "@/app/api/postsByPageIndex/route";
+import { getPostsCountApi } from "@/app/api/postsCount/route";
+
 export function trimLinkReadNext(str) {
   const regex = /<a.*entry-more-link.*\/a>/gi;
   const result = str.replace(regex, "");
@@ -6,50 +11,49 @@ export function trimLinkReadNext(str) {
 }
 
 export async function getPostsByPageIndex(pageIndex = 1) {
-  const url = new URL("/api/postsByPageIndex", process.env.SITE_URL);
-  url.searchParams.set("page", pageIndex);
+  if (typeof window === "undefined") {
+    return await getPostByPostIndexApi(pageIndex);
+  }
 
-  const response = await fetch(url);
-  const json = await response.json();
-  return json;
+  const response = await fetch(
+    `${window.location.origin}/api/postsByPageIndex?page=${pageIndex}`
+  );
+  return await response.json();
 }
 
 export async function getPostsBySlug(slug) {
-  const url = new URL("/api/postBySlug", process.env.SITE_URL);
-  url.searchParams.set("slug", slug);
+  if (typeof window === "undefined") {
+    return await getPostBySlugApi(slug);
+  }
 
-  const response = await fetch(url);
-  const json = await response.json();
-  return json;
+  const response = await fetch(`/api/postBySlug?slug=${slug}`);
+  return await response.json();
 }
 
 export async function getPagesCount() {
-  const url = new URL("/api/postsCount", process.env.SITE_URL);
+  if (typeof window === "undefined") {
+    return await getPostsCountApi();
+  }
 
-  const response = await fetch(url);
-  const json = await response.json();
-  return json;
+  const response = await fetch("/api/postsCount");
+  return await response.json();
 }
 
 export async function getPageBySlug(slug) {
-  const url = new URL("/api/pageBySlug", process.env.SITE_URL);
-  url.searchParams.set("slug", slug);
-
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return data;
+  if (typeof window === "undefined") {
+    return await getPageBySlugApi(slug);
+  }
+  const response = await fetch(`/api/pageBySlug?slug=${slug}`);
+  return await response.json();
 }
 
 export async function searchByText(text) {
-  if (!text) return;
+  if (!text && !typeof window) return;
 
   const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
-  const url = new URL("/api/search", process.env.SITE_URL);
-  url.searchParams.set("s", text.replaceAll(regexp, ""));
-
-  const response = await fetch(url);
+  const response = await fetch(`/api/search?s=${text.replaceAll(regexp, "")}`);
   const data = await response.json();
+  console.log("data", data);
 
   return data;
 }

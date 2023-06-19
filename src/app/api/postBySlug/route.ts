@@ -4,6 +4,10 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const slug: string = searchParams.get("slug") || "";
 
+  return NextResponse.json(await getPostBySlugApi(slug));
+}
+
+export async function getPostBySlugApi(slug: string) {
   const url = new URL("posts", process.env.API_BASE_URL);
   url.searchParams.set(
     "_fields",
@@ -12,7 +16,5 @@ export async function GET(request: Request) {
   url.searchParams.set("slug", slug);
 
   const response = await fetch(url);
-  const json = await response.json();
-
-  return NextResponse.json(json);
+  return await response.json();
 }
