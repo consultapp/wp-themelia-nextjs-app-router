@@ -1,6 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import Menu from "../../components/Menu/Menu";
 
 const words = ["mobile", "iphone", "android"];
@@ -8,7 +14,7 @@ const words = ["mobile", "iphone", "android"];
 function isMobile() {
   if (typeof window !== "undefined") {
     const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
-
+    console.log("userAgent", userAgent);
     return words.reduce(
       (acc, word) => (userAgent.includes(word) ? true : acc),
       false
@@ -27,7 +33,7 @@ export default function MenuContainer() {
     setIsOpen(!flag);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isMobileDevice && isOpen) {
       setIsOpen(false);
     }
