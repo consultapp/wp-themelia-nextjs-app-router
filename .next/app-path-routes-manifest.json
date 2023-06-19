@@ -1,0 +1,13 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/_not-found": "/_not-found",
+  "/page": "/",
+  "/api/pageBySlug/route": "/api/pageBySlug",
+  "/api/postBySlug/route": "/api/postBySlug",
+  "/api/postsByPageIndex/route": "/api/postsByPageIndex",
+  "/api/postsCount/route": "/api/postsCount",
+  "/api/search/route": "/api/search",
+  "/(page)/page/[slug]/page": "/page/[slug]",
+  "/(posts)/posts/[pageIndex]/page": "/posts/[pageIndex]",
+  "/(posts)/post/[slug]/page": "/post/[slug]"
+}

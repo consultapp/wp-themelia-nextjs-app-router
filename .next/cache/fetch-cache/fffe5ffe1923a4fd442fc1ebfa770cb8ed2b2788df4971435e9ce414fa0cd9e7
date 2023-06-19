@@ -1,0 +1,1 @@
+{"kind":"FETCH","data":{"headers":{"connection":"close","content-encoding":"gzip","content-type":"application/json","date":"Fri, 16 Jun 2023 20:53:48 GMT","transfer-encoding":"chunked","vary":"RSC, Next-Router-State-Tree, Next-Router-Prefetch, Accept-Encoding"},"body":"W10=","status":200,"tags":["/(posts)/post/[slug]/page"]},"revalidate":31536000}
