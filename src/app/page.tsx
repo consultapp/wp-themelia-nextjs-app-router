@@ -1,7 +1,6 @@
 import { getPagesCount, getPostsByPageIndex } from "@/utils/functions";
 import Posts from "@/components/Posts/Posts";
 import Pagination from "@/components/Pagination/Pagination";
-import Post from "@/components/Post/Post";
 
 export default async function Home() {
   const [posts, postsPages] = await Promise.all([
@@ -11,8 +10,8 @@ export default async function Home() {
 
   return (
     <>
-      <Posts posts={posts || []} />
-      <Pagination postsCount={postsPages.length} pageIndex={1} />
+      <Posts posts={posts.reverse() || []} />
+      <Pagination postsCount={postsPages.length || 0} pageIndex={1} />
     </>
   );
 }
