@@ -3,13 +3,17 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Search from "@/components/Plugins/Search";
 import { usePathname, useRouter } from "next/navigation";
 import { LOADING_STATUS } from "@/constants";
-import { searchByText } from "@/utils/functions";
+import { clearStringForParams, searchByText } from "@/utils/functions";
 
-const initialState = { loadingStatus: LOADING_STATUS.idle, data: [] };
+const initialState = {
+  loadingStatus: LOADING_STATUS.idle,
+  data: [],
+};
 
 export default function SearchContainer() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState(initialState);
+  const [cache, setCache] = useState(new Map());
   const pathname = usePathname();
   const timer = useRef();
 
@@ -19,19 +23,33 @@ export default function SearchContainer() {
   }, []);
 
   useEffect(() => {
-    if (search.length < 1) {
-      if (timer) clearTimeout(timer.current);
+    const searchText = clearStringForParams(search);
+
+    if (timer) {
+      clearTimeout(timer.current);
+    }
+
+    if (searchText.length < 1) {
       setResult(initialState);
       return;
     }
 
-    if (timer) clearTimeout(timer.current);
+    if (cache.get(searchText)) {
+      setResult({
+        loadingStatus: LOADING_STATUS.fulfilled,
+        data: cache.get(searchText),
+      });
+
+      return;
+    }
+
     setResult({ ...initialState, loadingStatus: LOADING_STATUS.pending });
 
     timer.current = setTimeout(() => {
-      searchByText(search)
+      searchByText(searchText)
         .then((data) => {
           setResult({ data, loadingStatus: LOADING_STATUS.fulfilled });
+          setCache(cache.set(searchText, data));
         })
         .catch(() => {
           setResult({
@@ -39,7 +57,8 @@ export default function SearchContainer() {
             loadingStatus: LOADING_STATUS.rejected,
           });
         });
-    }, 300);
+    }, 400);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   useEffect(() => {

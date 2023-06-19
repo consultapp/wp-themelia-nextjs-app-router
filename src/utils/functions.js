@@ -42,11 +42,16 @@ export async function getPageBySlug(slug) {
   return await response.json();
 }
 
+export function clearStringForParams(text) {
+  const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+
+  return text.replaceAll(regexp, "").toLowerCase();
+}
+
 export async function searchByText(text) {
   if (!text && !typeof window) return;
 
-  const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
-  const response = await fetch(`/api/search?s=${text.replaceAll(regexp, "")}`);
+  const response = await fetch(`/api/search?s=${clearStringForParams(text)}`);
   return await response.json();
 }
 
