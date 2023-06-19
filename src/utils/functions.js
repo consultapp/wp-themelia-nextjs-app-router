@@ -40,3 +40,16 @@ export async function getPageBySlug(slug) {
 
   return data;
 }
+
+export async function searchByText(text) {
+  if (!text) return;
+
+  const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+  const url = new URL("/api/search", process.env.SITE_URL);
+  url.searchParams.set("s", text.replaceAll(regexp, ""));
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data;
+}

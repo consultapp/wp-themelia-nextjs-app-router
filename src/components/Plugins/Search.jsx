@@ -17,20 +17,13 @@ export default function Search({ result, search, handleSearchChange }) {
             value={search}
             onChange={handleSearchChange}
           />
-        </label>{" "}
+        </label>
         {data.length > 0 && loadingStatus === LOADING_STATUS.fulfilled && (
           <ul className={styles.search}>
             {data.map((item) => {
               return (
-                <li key={item.id} className={styles.searchLi}>
-                  <Link
-                    href={
-                      item.type +
-                      item.url.replace(import.meta.env.VITE_SITE_BASE_URL, "")
-                    }
-                  >
-                    {item.title}
-                  </Link>
+                <li key={item.url} className={styles.searchLi}>
+                  <Link href={item.url}>{item.title}</Link>
                 </li>
               );
             })}
