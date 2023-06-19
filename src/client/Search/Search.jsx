@@ -43,7 +43,6 @@ export default function SearchContainer() {
   }, [search]);
 
   useEffect(() => {
-    console.log("pathname", pathname);
     setResult(initialState);
     setSearch("");
   }, [pathname]);

@@ -52,8 +52,5 @@ export async function searchByText(text) {
 
   const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
   const response = await fetch(`/api/search?s=${text.replaceAll(regexp, "")}`);
-  const data = await response.json();
-  console.log("data", data);
-
-  return data;
+  return await response.json();
 }

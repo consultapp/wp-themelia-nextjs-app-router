@@ -14,7 +14,6 @@ const words = ["mobile", "iphone", "android"];
 function isMobile() {
   if (typeof window !== "undefined") {
     const userAgent = window ? window.navigator.userAgent.toLowerCase() : false;
-    console.log("userAgent", userAgent);
     return words.reduce(
       (acc, word) => (userAgent.includes(word) ? true : acc),
       false
