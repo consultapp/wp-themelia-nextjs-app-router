@@ -6,6 +6,7 @@ const nextConfig = {
     API_BASE_URL: "https://consultapp.ru/wp-json/wp/v2/",
     POSTS_PER_PAGE: 10,
     SEARCH_PER_PAGE: 5,
+    PORT: 3011,
   },
   experimental: {
     appDir: true,
