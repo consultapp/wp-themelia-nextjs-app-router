@@ -1,10 +1,13 @@
-FROM  --platform=linux/amd64  node
+FROM  --platform=linux/amd64  node:20-bullseye
+# FROM  node:20-bullseye
+RUN npm set strict-ssl false
 
 WORKDIR /app
 
-COPY package.json /app/
+COPY package.json .
+COPY package-lock.json .
 
-RUN npm i
+RUN npm install
 
 COPY . .
 
@@ -14,4 +17,5 @@ ENV PORT=3000
 
 EXPOSE $PORT
 
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
+ENTRYPOINT ["npm", "start"]
