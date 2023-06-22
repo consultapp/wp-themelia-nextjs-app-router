@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dbuild": "docker build --platform linux/amd64 -t test7778/themelia-next:amd .",
-    "drun": "docker run -d --rm --name themelia-next -p 3011:3000 test7778/themelia-next:amd",
+    "dbuild": "docker build -t test7778/themelia-next .",
+    "drun": "docker run -d --rm --name themelia-next -p 3011:3000 test7778/themelia-next",
     "dpush": "docker push test7778/themelia-next"
   },
   "dependencies": {
