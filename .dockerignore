@@ -1,4 +1,8 @@
 node_modules
+.next
+
 .vccode
 .git
+.gitignore
+.DS_Store
 Dockerfile
