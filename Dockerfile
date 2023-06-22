@@ -6,8 +6,10 @@ COPY package.json /app/
 
 RUN npm i
 
-COPY . . 
+COPY . .
 
-EXPOSE 3011
+ENV PORT=3000
+
+EXPOSE $PORT
 
 CMD ["npm", "run", "start"]
