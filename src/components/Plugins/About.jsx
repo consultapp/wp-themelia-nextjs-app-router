@@ -1,4 +1,4 @@
-export default function About() {
+export default function AboutPlugin() {
   return (
     <>
       <section id="block-2" className="widget widget_block">

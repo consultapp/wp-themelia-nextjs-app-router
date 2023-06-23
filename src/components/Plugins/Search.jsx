@@ -3,7 +3,7 @@ import { LOADING_STATUS } from "@/constants";
 import LoadingWheel from "@/components/LoadingWheel/LoadingWheel";
 import styles from "./style.module.css";
 
-export default function Search({ result, search, handleSearchChange }) {
+export default function SearchPlugin({ result, search, handleSearchChange }) {
   const { loadingStatus, data } = result;
   return (
     <section id="search-2" className="widget widget_search">

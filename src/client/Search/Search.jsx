@@ -4,6 +4,7 @@ import Search from "@/components/Plugins/Search";
 import { usePathname, useRouter } from "next/navigation";
 import { LOADING_STATUS } from "@/constants";
 import { clearStringForParams, searchByText } from "@/utils/functions";
+import SearchPlugin from "@/components/Plugins/Search";
 
 const initialState = {
   loadingStatus: LOADING_STATUS.idle,
@@ -67,7 +68,7 @@ export default function SearchContainer() {
   }, [pathname]);
 
   return (
-    <Search
+    <SearchPlugin
       handleSearchChange={handleSearchChange}
       search={search}
       result={result}
