@@ -12,7 +12,7 @@ export default function Menu({ isOpen, toggleButton }) {
     >
       <button
         id="menu-toggle"
-        className={`menu-toggle hamburger hamburger--spin main-menu-btn is-not-active font-secondary ${styles.buttonHamburger}`}
+        className={`menu-toggle hamburger hamburger--spin main-menu-btn font-secondary ${styles.buttonHamburger}`}
         type="button"
         onClick={() => {
           toggleButton(isOpen);
@@ -26,15 +26,13 @@ export default function Menu({ isOpen, toggleButton }) {
       {isOpen && (
         <ul id="menu-primary-items" className="menu-items sm sm-simple">
           <li className="menu-item menu-item-type-post_type menu-item-object-page">
+            <Link href="/">Статьи</Link>
+          </li>
+          <li className="menu-item menu-item-type-post_type menu-item-object-page">
             <Link href="/page/projects-react-next/">React/Next</Link>
           </li>
           <li className="menu-item menu-item-type-taxonomy menu-item-object-category">
-            <Link href="/post/simple-bot-for-telegram-php/">Telegram Bots</Link>
-          </li>
-          <li className="menu-item menu-item-type-post_type menu-item-object-post">
-            <Link href="/post/%d1%85%d0%be%d1%81%d1%82%d0%b8%d0%bd%d0%b3/">
-              Хостинг
-            </Link>
+            <Link href="/category/stati/wordpress/">WordPress</Link>
           </li>
           <li className="menu-item menu-item-type-custom menu-item-object-custom">
             <a href="mailto:info@consultapp.ru">info@consultapp.ru</a>
