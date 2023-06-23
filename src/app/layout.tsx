@@ -1,9 +1,9 @@
 import "@/css/index.css";
 import "@/css/unsemantic.css";
 import Workarea from "@/components/Workarea/Workarea";
-import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import StoreProvider from "@/components/StoreProvider/StoreProvider";
 
 export const metadata = {
   title: "Next.js | Wordpress Headless | Themelia",
@@ -18,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
-        <Header />
-        <Workarea>{children}</Workarea>
-        <Footer />
+        <StoreProvider>
+          <Header />
+          <Workarea>{children}</Workarea>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
