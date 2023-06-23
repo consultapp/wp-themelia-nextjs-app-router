@@ -1,5 +1,7 @@
+import { notFound } from "next/navigation";
+
 export default function Page({ page }) {
-  if (!page || !page.length) return redirect("/404");
+  if (!page || !page.length) return notFound();
 
   const { id, title, content } = page[0];
   const renderTitle = title?.rendered || "";

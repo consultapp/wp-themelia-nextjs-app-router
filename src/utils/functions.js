@@ -5,9 +5,26 @@ export function trimLinkReadNext(str) {
   return result;
 }
 
+export function clearStringForParams(text) {
+  const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+
+  return text.replaceAll(regexp, "").toLowerCase();
+}
+
+export function getMetaTitle(title, clear = false) {
+  return clear ? title : `${title} | Consultapp.ru`;
+}
+
+export async function searchByText(text) {
+  if (!text && !typeof window) return;
+
+  const response = await fetch(`/api/search?s=${clearStringForParams(text)}`);
+  return await response.json();
+}
+
 export async function getPostsByPageIndex(pageIndex = 1) {
   if (typeof window === "undefined") {
-    return await getPostByPostIndexApi(pageIndex);
+    return await getPostByPageIndexApi(pageIndex);
   }
 
   const response = await fetch(
@@ -42,16 +59,11 @@ export async function getPageBySlug(slug) {
   return await response.json();
 }
 
-export function clearStringForParams(text) {
-  const regexp = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
-
-  return text.replaceAll(regexp, "").toLowerCase();
-}
-
-export async function searchByText(text) {
-  if (!text && !typeof window) return;
-
-  const response = await fetch(`/api/search?s=${clearStringForParams(text)}`);
+export async function getCategories(slug) {
+  if (typeof window === "undefined") {
+    return await getCategoriesApi(slug);
+  }
+  const response = await fetch(`/api/categories`);
   return await response.json();
 }
 
@@ -78,7 +90,7 @@ export async function getPostBySlugApi(slug) {
   return await response.json();
 }
 
-export async function getPostByPostIndexApi(pageIndex) {
+export async function getPostByPageIndexApi(pageIndex) {
   const url = new URL("posts", process.env.API_BASE_URL);
   url.searchParams.set("per_page", process.env.POSTS_PER_PAGE || "");
   url.searchParams.set(
@@ -94,6 +106,15 @@ export async function getPostByPostIndexApi(pageIndex) {
 export async function getPostsCountApi() {
   const url = new URL("posts", process.env.API_BASE_URL);
   url.searchParams.set("_fields", "id");
+  url.searchParams.set("per_page", "100");
+
+  const response = await fetch(url);
+  return await response.json();
+}
+
+export async function getCategoriesApi() {
+  const url = new URL("categories", process.env.API_BASE_URL);
+  url.searchParams.set("_fields", "slug,id,taxonomy,parent,name,description");
   url.searchParams.set("per_page", "100");
 
   const response = await fetch(url);
