@@ -4,9 +4,7 @@ import Author from "@/components/Author/Author";
 import { notFound } from "next/navigation";
 
 export default function Post({ post }) {
-  if (!post || !post.length) return notFound();
-
-  const { id, content, slug, title, date } = post[0];
+  const { id, content, slug, title, date } = post;
   const contentRendered = trimLinkReadNext(content?.rendered || "");
   const titleRendered = title?.rendered || "";
 

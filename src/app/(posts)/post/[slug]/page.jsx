@@ -1,13 +1,11 @@
-import { getPostsBySlug } from "@/utils/functions";
+import { getMetaTitle, getPostsBySlug } from "@/utils/functions";
 import Post from "@/components/Post/Post";
 
 export async function generateMetadata({ params }) {
   const { slug } = params;
   const post = await getPostsBySlug(slug);
 
-  if (!post || !page.length) {
-    return;
-  }
+  if (!post || !post.length) return notFound();
 
   const { title } = post[0];
 
@@ -24,5 +22,5 @@ export default async function PostPage({ params }) {
   const { slug } = params;
   const post = await getPostsBySlug(slug);
 
-  return <Post post={post || []} />;
+  return <Post post={post[0] || {}} />;
 }
