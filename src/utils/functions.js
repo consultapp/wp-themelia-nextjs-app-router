@@ -123,3 +123,17 @@ export async function getCategoriesApi() {
   const response = await fetch(url);
   return await response.json();
 }
+
+export async function getPostByCategoriesApi(id) {
+  const url = new URL("posts", process.env.API_BASE_URL);
+  url.searchParams.set("per_page", "100");
+  url.searchParams.set(
+    "_fields",
+    "id,title,categories,excerpt,date,link,type,slug,modified"
+  );
+  url.searchParams.set("categories", id);
+
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+}

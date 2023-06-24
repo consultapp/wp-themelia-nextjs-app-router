@@ -5,3 +5,6 @@ export const selectCategoryEntities = (state) =>
 
 export const selectCategoryTree = (state) =>
   selectCategories(state)?.tree || {};
+
+export const selectCategorySlugToId = (state) =>
+  selectCategories(state)?.slugToId || {};

@@ -12,7 +12,9 @@ export default function Menu({ isOpen, toggleButton }) {
     >
       <button
         id="menu-toggle"
-        className={`menu-toggle hamburger hamburger--spin main-menu-btn font-secondary ${styles.buttonHamburger}`}
+        className={`menu-toggle hamburger hamburger--spin main-menu-btn font-secondary is-${
+          isOpen ? "" : "not-"
+        }active ${styles.buttonHamburger}`}
         type="button"
         onClick={() => {
           toggleButton(isOpen);
@@ -23,8 +25,13 @@ export default function Menu({ isOpen, toggleButton }) {
         </span>
         <span className="screen-reader-text">Menu</span>
       </button>
-      {isOpen && (
-        <ul id="menu-primary-items" className="menu-items sm sm-simple">
+      {
+        <ul
+          id="menu-primary-items"
+          className={`menu-primary-items menu-items sm sm-simple  ${
+            isOpen ? "menu-is-active" : ""
+          }`}
+        >
           <li className="menu-item menu-item-type-post_type menu-item-object-page">
             <Link href="/">Статьи</Link>
           </li>
@@ -38,7 +45,7 @@ export default function Menu({ isOpen, toggleButton }) {
             <a href="mailto:info@consultapp.ru">info@consultapp.ru</a>
           </li>
         </ul>
-      )}
+      }
     </nav>
   );
 }
