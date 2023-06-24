@@ -11,10 +11,15 @@ export async function generateMetadata({ params }) {
   }
 
   const { name, description } = category[0];
+  const title = getMetaTitle(name);
 
   return {
-    title: getMetaTitle(name),
+    title: title,
     description: description,
+    openGraph: {
+      title: title,
+      description: description,
+    },
   };
 }
 

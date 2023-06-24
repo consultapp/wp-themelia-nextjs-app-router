@@ -10,12 +10,14 @@ export async function generateMetadata({ params }) {
     return;
   }
 
-  const { title, content } = page[0];
-  const renderTitle = title?.rendered || "";
-  const renderContent = content?.rendered || "";
+  const { title } = page[0];
 
+  const renderTitle = getMetaTitle(title?.rendered || "");
   return {
-    title: getMetaTitle(renderTitle),
+    title: renderTitle,
+    openGraph: {
+      title: renderTitle,
+    },
   };
 }
 

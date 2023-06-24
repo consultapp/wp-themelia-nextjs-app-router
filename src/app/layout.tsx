@@ -6,9 +6,16 @@ import Footer from "@/components/Footer/Footer";
 import StoreProvider from "@/components/StoreProvider/StoreProvider";
 import { getMetaTitle } from "@/utils/functions";
 
+const title = getMetaTitle("Главная");
+const description = "Theme Themelia for Wordpress - Next.js/React SSR";
+
 export const metadata = {
-  title: getMetaTitle("Главная"),
-  description: "Theme Themelia for Wordpress - Next.js/React SSR",
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+  },
 };
 
 export default function RootLayout({
