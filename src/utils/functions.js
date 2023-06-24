@@ -12,7 +12,7 @@ export function clearStringForParams(text) {
 }
 
 export function getMetaTitle(title, clear = false) {
-  return clear ? title : `${title} | Consultapp.ru`;
+  return clear ? title : `${title} | ${process.env.MAIN_TITLE}`;
 }
 
 export async function searchByText(text) {
@@ -114,7 +114,10 @@ export async function getPostsCountApi() {
 
 export async function getCategoriesApi() {
   const url = new URL("categories", process.env.API_BASE_URL);
-  url.searchParams.set("_fields", "slug,id,taxonomy,parent,name,description");
+  url.searchParams.set(
+    "_fields",
+    "slug,id,taxonomy,parent,name,description,count,link"
+  );
   url.searchParams.set("per_page", "100");
 
   const response = await fetch(url);

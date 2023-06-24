@@ -1,7 +1,7 @@
 "use client";
 import SearchContainer from "@/client/Search/Search";
 import AboutPlugin from "@/components/Plugins/About";
-import CategoriesPlugin from "../Plugins/Categories";
+import CategoryContainer from "@/client/Category/Category";
 
 export default function Sidebar() {
   return (
@@ -21,7 +21,7 @@ export default function Sidebar() {
       </h3>
       <SearchContainer />
       <AboutPlugin />
-      <CategoriesPlugin />
+      <CategoryContainer />
       <div className="sidebar-inner"></div>
     </aside>
   );

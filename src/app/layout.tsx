@@ -4,9 +4,10 @@ import Workarea from "@/components/Workarea/Workarea";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import StoreProvider from "@/components/StoreProvider/StoreProvider";
+import { getMetaTitle } from "@/utils/functions";
 
 export const metadata = {
-  title: "Next.js | Wordpress Headless | Themelia",
+  title: getMetaTitle("Главная"),
   description: "Theme Themelia for Wordpress - Next.js/React SSR",
 };
 

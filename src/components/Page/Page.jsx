@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 
 export default function Page({ page }) {
-  if (!page || !page.length) return notFound();
+  if (!page) return notFound();
 
-  const { id, title, content } = page[0];
+  console.log("page", page);
+
+  const { id, title, content } = page;
   const renderTitle = title?.rendered || "";
   const renderContent = content?.rendered || "";
 
