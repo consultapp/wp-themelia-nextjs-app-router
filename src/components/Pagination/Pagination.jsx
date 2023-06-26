@@ -3,6 +3,7 @@ import LoadingWheel from "@/components/LoadingWheel/LoadingWheel";
 
 export default function Pagination({ postsCount, pageIndex }) {
   if (!postsCount) return <LoadingWheel />;
+  console.log("pageIndex", pageIndex);
 
   const pageCount = Math.ceil(postsCount / process.env.POSTS_PER_PAGE);
 
@@ -23,7 +24,7 @@ export default function Pagination({ postsCount, pageIndex }) {
         )}
         {new Array(pageCount).fill(0).map((_, i) => {
           const page = i + 1;
-          return page === pageIndex ? (
+          return page === parseInt(pageIndex) ? (
             <span
               aria-current="page"
               key={`pageIndex-${page}`}
