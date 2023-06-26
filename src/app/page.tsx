@@ -1,6 +1,5 @@
 import {
   getCategories,
-  getMetaTitle,
   getPagesCount,
   getPostsByPageIndex,
 } from "@/utils/functions";
