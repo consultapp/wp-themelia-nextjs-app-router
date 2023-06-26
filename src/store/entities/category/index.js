@@ -5,7 +5,6 @@ export const categorySlice = createSlice({
   initialState: { entities: [], tree: {}, slugToId: {} },
   reducers: {
     preload: (state, { payload }) => {
-      // console.log("payload", payload);
       state.entities = payload.filter((item) => item.count > 0);
 
       const tree = state.entities

@@ -10,7 +10,9 @@ import CategoryHeader from "@/components/CategoryHeader/CategoryHeader";
 export async function generateMetadata({ params }) {
   const { slug } = params;
   const categories = await getCategories();
-  const category = categories.filter((item) => item.slug === slug.at(-1));
+  const category = categories.filter(
+    (item) => item.slug === slug.at(-1).toLowerCase()
+  );
   if (!category || !category.length) {
     return notFound();
   }
@@ -28,10 +30,12 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function CategoryPage({ params }) {
-  console.log("params", params);
   const { slug } = params;
+
   const categories = await getCategories();
-  const category = categories.filter((item) => item.slug === slug.at(-1));
+  const category = categories.filter(
+    (item) => item.slug === slug.at(-1).toLowerCase()
+  );
 
   if (!category || !category.length) {
     return notFound();

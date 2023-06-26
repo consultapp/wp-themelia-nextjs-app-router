@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 export default function Page({ page }) {
   if (!page) return notFound();
 
-  console.log("page", page);
-
   const { id, title, content } = page;
   const renderTitle = title?.rendered || "";
   const renderContent = content?.rendered || "";

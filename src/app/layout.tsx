@@ -4,7 +4,10 @@ import Workarea from "@/components/Workarea/Workarea";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import StoreProvider from "@/components/StoreProvider/StoreProvider";
-import { getMetaTitle } from "@/utils/functions";
+import { getCategories, getMetaTitle } from "@/utils/functions";
+import PreloaderCategories from "@/components/Preloaders/PreloaderCategories";
+import { store } from "@/store";
+import { preload } from "@/store/entities/category";
 
 const title = getMetaTitle("Главная");
 const description = "Theme Themelia for Wordpress - Next.js/React SSR";
@@ -18,14 +21,17 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const categories = await getCategories();
+
   return (
     <html lang="ru">
       <body>
+        <PreloaderCategories categories={categories} />
         <StoreProvider>
           <Header />
           <Workarea>{children}</Workarea>

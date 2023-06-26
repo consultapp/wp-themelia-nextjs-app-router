@@ -28,8 +28,6 @@ export default function CategoriesPlugin({ categories, isLoading }) {
   if (isLoading) {
     return <LoadingWheel />;
   }
-  console.log("categories", categories);
-  console.log("jsx", jsx);
 
   return (
     <section id="categories-2" className="widget widget_categories">
