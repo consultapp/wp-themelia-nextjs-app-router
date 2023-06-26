@@ -8,15 +8,14 @@ export const categorySlice = createSlice({
       // console.log("payload", payload);
       state.entities = payload.filter((item) => item.count > 0);
 
-      // state.slugToId = payload.reduce((acc, item) => {
-      //   acc[item.slug] = item.id;
-      //   return acc;
-      // }, {});
-
       const tree = state.entities
         .filter((item) => item.parent === 0)
         .reduce((acc, item) => {
-          acc[item.id] = { ...item, childs: {} };
+          acc[item.id] = {
+            ...item,
+            link: item.link.replace(process.env.SITE_BASE_URL, ""),
+            childs: {},
+          };
           return acc;
         }, {});
 
@@ -24,7 +23,10 @@ export const categorySlice = createSlice({
         .filter((item) => item.parent !== 0)
         .forEach((item) => {
           if (item.parent && tree[item.parent]) {
-            tree[item.parent].childs[item.id] = item;
+            tree[item.parent].childs[item.id] = {
+              ...item,
+              link: item.link.replace(process.env.SITE_BASE_URL, ""),
+            };
           }
         });
       state.tree = tree;
