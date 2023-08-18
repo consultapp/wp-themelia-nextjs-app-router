@@ -1,4 +1,4 @@
-import { getPostByPageIndexApi } from "@/utils/functions";
+import { getPostByPageIndexApi } from "@/utils/server-functions";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {

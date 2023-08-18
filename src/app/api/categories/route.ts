@@ -1,4 +1,4 @@
-import { getCategoriesApi } from "@/utils/functions";
+import { getCategoriesApi } from "@/utils/server-functions";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
