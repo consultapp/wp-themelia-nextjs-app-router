@@ -55,7 +55,7 @@ export async function getCategoriesApi() {
   return await response.json();
 }
 
-export async function getPostByCategoriesApi(id) {
+export async function getPostsByCategoryApi(id) {
   const url = new URL("posts", process.env.API_BASE_URL);
   url.searchParams.set("per_page", "100");
   url.searchParams.set(

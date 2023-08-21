@@ -2,7 +2,7 @@ import Posts from "@/components/Posts/Posts";
 import {
   getCategories,
   getMetaTitle,
-  getPostByCategoriesApi,
+  getPostsByCategory,
 } from "@/utils/functions";
 import { notFound } from "next/navigation";
 import CategoryHeader from "@/components/CategoryHeader/CategoryHeader";
@@ -41,7 +41,7 @@ export default async function CategoryPage({ params }) {
     return notFound();
   }
   const { id, name, description } = category[0];
-  const posts = await getPostByCategoriesApi(id);
+  const posts = await getPostsByCategory(id);
 
   return (
     <>

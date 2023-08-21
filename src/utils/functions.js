@@ -3,6 +3,7 @@ import {
   getPageBySlugApi,
   getPostByPageIndexApi,
   getPostBySlugApi,
+  getPostsByCategoryApi,
   getPostsCountApi,
 } from "./server-functions";
 
@@ -29,6 +30,8 @@ export async function searchByText(text) {
   const response = await fetch(`/api/search?s=${clearStringForParams(text)}`);
   return await response.json();
 }
+
+// ****************** GET *************************************
 
 export async function getPostsByPageIndex(pageIndex = 1) {
   if (typeof window === "undefined") {
@@ -70,5 +73,13 @@ export async function getCategories(slug) {
     return await getCategoriesApi(slug);
   }
   const response = await fetch(`/api/categories`);
+  return await response.json();
+}
+
+export async function getPostsByCategory(id) {
+  if (typeof window === "undefined") {
+    return await getPostsByCategoryApi(id);
+  }
+  const response = await fetch(`/api/categoryPosts?id=${id}`);
   return await response.json();
 }
